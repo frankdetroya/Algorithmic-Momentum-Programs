@@ -1,0 +1,5 @@
+// Pro Real Time trading models & programs.
+// Language: Pro Real Code.
+// Financial instruments: ETDs (Exchange-Traded Derivatives), OTC (Over-The-Counter) derivatives, & the spot market.
+// Servers: Interactive Brokers (IB Gateway, OTCs & ETDs), IG Group (OTCs), and Saxo (OTCs & ETDs).
+// Packages: Conservative (~15 vol), Moderate , and Aggressive.
