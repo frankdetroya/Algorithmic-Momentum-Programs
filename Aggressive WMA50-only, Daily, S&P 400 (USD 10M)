@@ -1,5 +1,7 @@
-// Aggressive WMA50-only ($10M)
+AGGRESSIVE WMA50-ONLY DAILY S&P 400 (USD 10M)
+This model can be traded via OTC devs (CFDs) or ETDs (futures) with Interactive, IG Group, or Saxo servers.
 
+--------------------------------------------------------------------------------------------------------------
 
 // Definition of code parameters
 DEFPARAM CumulateOrders = False // Cumulating positions deactivated
