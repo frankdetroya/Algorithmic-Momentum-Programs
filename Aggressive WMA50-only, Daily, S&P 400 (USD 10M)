@@ -1,4 +1,6 @@
-Aggressive WMA50-only ($10M)
+// Aggressive WMA50-only ($10M)
+
+
 // Definition of code parameters
 DEFPARAM CumulateOrders = False // Cumulating positions deactivated
 // Conditions to enter long positions
