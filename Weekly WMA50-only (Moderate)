@@ -1,0 +1,103 @@
+WEEKLY WMA50-ONLY (MODERATE)
+
+This model can be traded via OTC devs (CFDs) or ETDs (futures) with IBKR, IG Group, or Saxo servers.
+This model takes into account a USD 50 fee per buy/sell order + a spread of 2.
+Rollovers/swaps/overnight funding fees may apply due to some positions are swing.
+All trades contain a trailing stop of 0.3%. 
+The model enters long or short if the price is above or bellow the 50 WME (Weighted Moving Average) in the Weekly candlestick chart.
+Some of the markets the model works best with are:
+
+- Mini S&P400 (CME E-mini) 
+- Bitcoin (CME Globex)
+- Palladium (NYMEX)
+- UK Natural Gas (ICE Europe)
+- DAX40 (EUREX)
+- SMI 20 (EUREX)
+- Live Cattle (CME Globex)
+- Gold (COMEX)
+- Brent Crude Oil (NYMEX)
+- Feeder Cattle (CME Globex)
+- CHF/USD (CME Globex)
+
+If you would like to check all the model details, including the Ucler, MSD%, RRR, PP, CAGR%, and so on, you can contact us or visit Blockmas.com
+
+-------------------------------------------------------------------------------------------------------------------
+Starting capital of USD 100K (position size of 1 contract): 
+-------------------------------------------------------------------------------------------------------------------
+
+// Definition of code parameters
+DEFPARAM CumulateOrders = False // Cumulating positions deactivated
+// Conditions to enter long positions
+indicator1 = WeightedAverage[50](close)
+c1 = (close > indicator1)
+IF c1 THEN
+BUY 1 SHARES AT MARKET
+ENDIF
+// Conditions to exit long positions
+indicator2 = WeightedAverage[50](close)
+c2 = (close < indicator2)
+IF c2 THEN
+SELL AT MARKET
+ENDIF
+// Conditions to enter short positions
+indicator3 = WeightedAverage[50](close)
+c3 = (close < indicator3)
+IF c3 THEN
+SELLSHORT 1 SHARES AT MARKET
+ENDIF
+// Conditions to exit short positions
+indicator4 = WeightedAverage[50](close)
+c4 = (close > indicator4)
+IF c4 THEN
+EXITSHORT AT MARKET
+ENDIF
+// Stops and targets
+SET STOP %TRAILING 0.3
+
+------------------------------------------------------------------------------------------------------------------
+
+
+-------------------------------------------------------------------------------------------------------------------
+Starting capital of USD 1M (position size of 10 contracts): 
+-------------------------------------------------------------------------------------------------------------------
+
+// Definition of code parameters
+DEFPARAM CumulateOrders = False // Cumulating positions deactivated
+// Conditions to enter long positions
+indicator1 = WeightedAverage[50](close)
+c1 = (close > indicator1)
+IF c1 THEN
+BUY 10 SHARES AT MARKET
+ENDIF
+// Conditions to exit long positions
+indicator2 = WeightedAverage[50](close)
+c2 = (close < indicator2)
+IF c2 THEN
+SELL AT MARKET
+ENDIF
+// Conditions to enter short positions
+indicator3 = WeightedAverage[50](close)
+c3 = (close < indicator3)
+IF c3 THEN
+SELLSHORT 10 SHARES AT MARKET
+ENDIF
+// Conditions to exit short positions
+indicator4 = WeightedAverage[50](close)
+c4 = (close > indicator4)
+IF c4 THEN
+EXITSHORT AT MARKET
+ENDIF
+// Stops and targets
+SET STOP %TRAILING 0.3
+
+
+-------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
