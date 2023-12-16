@@ -1,0 +1,92 @@
+RSI14-only (AGGRESSIVE) 
+
+This model can be traded via OTC devs (CFDs) or ETDs (futures) with IBKR, IG Group, or Saxo servers.
+This model takes into account a USD 125 fee per buy/sell order (USD 100K capital); USD 620 (USD 500K capital); or USD 1250 (USD 1M capital); + a spread of 2.
+Rollovers/swaps/overnight funding fees may apply due to some positions are swing.
+All trades contain a trailing stop of 0.3%. 
+The model enters long or short if the MACD (210. 70, 14) is above or bellow the level 2 in the Daily candlestick chart.
+Some of the markets the model works best with are:
+
+- Mini S&P400 (CME E-mini) 
+- Bitcoin (CME Globex)
+- Palladium (NYMEX)
+- UK Natural Gas (ICE Europe)
+- DAX40 (EUREX)
+- SMI 20 (EUREX)
+- Live Cattle (CME Globex)
+- Gold (COMEX)
+- Feeder Cattle (CME Globex)
+- CHF/USD (CME Globex)
+
+If you would like to check all the model details, including the Ucler, MSD%, RRR, PP, CAGR%, and so on, you can contact us or visit Blockmas.com
+In order to trade these models, just download the code, open the Daily chart the above markets, and start the automatic trading.
+
+
+CODES:
+
+-------------------------------------------------------------------------------------------------------------------
+Starting capital of USD 100K (position size of 3 contracts): 
+-------------------------------------------------------------------------------------------------------------------
+
+// Definition of code parameters
+DEFPARAM CumulateOrders = False // Cumulating positions deactivated
+// Conditions to enter long positions
+indicator1 = MACDSignal[14,210,70](close)
+c1 = (indicator1 > 2)
+IF c1 THEN
+BUY 3 SHARES AT MARKET
+ENDIF
+// Conditions to enter short positions
+indicator2 = MACDSignal[14,210,70](close)
+c2 = (indicator2 < -2)
+IF c2 THEN
+SELLSHORT 3 SHARES AT MARKET
+ENDIF
+// Stops and targets
+SET STOP %LOSS 0.3 %TRAILING 0.3
+
+------------------------------------------------------------------------------------------------------------------
+
+-------------------------------------------------------------------------------------------------------------------
+Starting capital of USD 500K (position size of 13 contracts): 
+-------------------------------------------------------------------------------------------------------------------
+
+// Definition of code parameters
+DEFPARAM CumulateOrders = False // Cumulating positions deactivated
+// Conditions to enter long positions
+indicator1 = MACDSignal[14,210,70](close)
+c1 = (indicator1 > 2)
+IF c1 THEN
+BUY 13 SHARES AT MARKET
+ENDIF
+// Conditions to enter short positions
+indicator2 = MACDSignal[14,210,70](close)
+c2 = (indicator2 < -2)
+IF c2 THEN
+SELLSHORT 13 SHARES AT MARKET
+ENDIF
+// Stops and targets
+SET STOP %LOSS 0.3 %TRAILING 0.3
+
+-------------------------------------------------------------------------------------------------------------------
+Starting capital of USD 1M (position size of 25 contracts): 
+-------------------------------------------------------------------------------------------------------------------
+
+// Definition of code parameters
+DEFPARAM CumulateOrders = False // Cumulating positions deactivated
+// Conditions to enter long positions
+indicator1 = MACDSignal[14,210,70](close)
+c1 = (indicator1 > 2)
+IF c1 THEN
+BUY 25 SHARES AT MARKET
+ENDIF
+// Conditions to enter short positions
+indicator2 = MACDSignal[14,210,70](close)
+c2 = (indicator2 < -2)
+IF c2 THEN
+SELLSHORT 25 SHARES AT MARKET
+ENDIF
+// Stops and targets
+SET STOP %LOSS 0.3 %TRAILING 0.3
+
+-------------------------------------------------------------------------------------------------------------------
