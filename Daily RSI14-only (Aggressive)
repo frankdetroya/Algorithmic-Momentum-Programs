@@ -1,10 +1,10 @@
-RSI14-only (AGGRESSIVE) 
+Daily RSI14-only (AGGRESSIVE) 
 
 This model can be traded via OTC devs (CFDs) or ETDs (futures) with IBKR, IG Group, or Saxo servers.
-This model takes into account a USD 125 fee per buy/sell order (USD 100K capital); USD 620 (USD 500K capital); or USD 1250 (USD 1M capital); + a spread of 2.
+This model, due to is in Aggressive position sizing mode, takes into account a USD 125 fee per buy/sell order (USD 100K capital); USD 620 (USD 500K capital); or USD 1250 (USD 1M capital); + a spread of 2.
 Rollovers/swaps/overnight funding fees may apply due to some positions are swing.
-All trades contain a trailing stop of 0.3%. 
-The model enters long or short if the MACD (210. 70, 14) is above or bellow the level 2 in the Daily candlestick chart.
+All trades contain a trailing stop of 0.15%. 
+The model enters long or short if the RSI (14) is above or bellow the level 67/43 in the Daily candlestick chart.
 Some of the markets the model works best with are:
 
 - Mini S&P400 (CME E-mini) 
@@ -31,19 +31,31 @@ Starting capital of USD 100K (position size of 3 contracts):
 // Definition of code parameters
 DEFPARAM CumulateOrders = False // Cumulating positions deactivated
 // Conditions to enter long positions
-indicator1 = MACDSignal[14,210,70](close)
-c1 = (indicator1 > 2)
+indicator1 = RSI[14](close)
+c1 = (indicator1 > 67)
 IF c1 THEN
 BUY 3 SHARES AT MARKET
 ENDIF
-// Conditions to enter short positions
-indicator2 = MACDSignal[14,210,70](close)
-c2 = (indicator2 < -2)
+// Conditions to exit long positions
+indicator2 = RSI[14](close)
+c2 = (indicator2 >= 45)
 IF c2 THEN
+SELL AT MARKET
+ENDIF
+// Conditions to enter short positions
+indicator3 = RSI[14](close)
+c3 = (indicator3 < 43)
+IF c3 THEN
 SELLSHORT 3 SHARES AT MARKET
 ENDIF
+// Conditions to exit short positions
+indicator4 = RSI[14](close)
+c4 = (indicator4 >= 65)
+IF c4 THEN
+EXITSHORT AT MARKET
+ENDIF
 // Stops and targets
-SET STOP %LOSS 0.3 %TRAILING 0.3
+SET STOP %LOSS 0.15 %TRAILING 0.15
 
 ------------------------------------------------------------------------------------------------------------------
 
@@ -54,19 +66,31 @@ Starting capital of USD 500K (position size of 13 contracts):
 // Definition of code parameters
 DEFPARAM CumulateOrders = False // Cumulating positions deactivated
 // Conditions to enter long positions
-indicator1 = MACDSignal[14,210,70](close)
-c1 = (indicator1 > 2)
+indicator1 = RSI[14](close)
+c1 = (indicator1 > 67)
 IF c1 THEN
 BUY 13 SHARES AT MARKET
 ENDIF
-// Conditions to enter short positions
-indicator2 = MACDSignal[14,210,70](close)
-c2 = (indicator2 < -2)
+// Conditions to exit long positions
+indicator2 = RSI[14](close)
+c2 = (indicator2 >= 45)
 IF c2 THEN
+SELL AT MARKET
+ENDIF
+// Conditions to enter short positions
+indicator3 = RSI[14](close)
+c3 = (indicator3 < 43)
+IF c3 THEN
 SELLSHORT 13 SHARES AT MARKET
 ENDIF
+// Conditions to exit short positions
+indicator4 = RSI[14](close)
+c4 = (indicator4 >= 65)
+IF c4 THEN
+EXITSHORT AT MARKET
+ENDIF
 // Stops and targets
-SET STOP %LOSS 0.3 %TRAILING 0.3
+SET STOP %LOSS 0.15 %TRAILING 0.15
 
 -------------------------------------------------------------------------------------------------------------------
 Starting capital of USD 1M (position size of 25 contracts): 
@@ -75,18 +99,30 @@ Starting capital of USD 1M (position size of 25 contracts):
 // Definition of code parameters
 DEFPARAM CumulateOrders = False // Cumulating positions deactivated
 // Conditions to enter long positions
-indicator1 = MACDSignal[14,210,70](close)
-c1 = (indicator1 > 2)
+indicator1 = RSI[14](close)
+c1 = (indicator1 > 67)
 IF c1 THEN
 BUY 25 SHARES AT MARKET
 ENDIF
-// Conditions to enter short positions
-indicator2 = MACDSignal[14,210,70](close)
-c2 = (indicator2 < -2)
+// Conditions to exit long positions
+indicator2 = RSI[14](close)
+c2 = (indicator2 >= 45)
 IF c2 THEN
+SELL AT MARKET
+ENDIF
+// Conditions to enter short positions
+indicator3 = RSI[14](close)
+c3 = (indicator3 < 43)
+IF c3 THEN
 SELLSHORT 25 SHARES AT MARKET
 ENDIF
+// Conditions to exit short positions
+indicator4 = RSI[14](close)
+c4 = (indicator4 >= 65)
+IF c4 THEN
+EXITSHORT AT MARKET
+ENDIF
 // Stops and targets
-SET STOP %LOSS 0.3 %TRAILING 0.3
+SET STOP %LOSS 0.15 %TRAILING 0.15
 
 -------------------------------------------------------------------------------------------------------------------
